@@ -26,6 +26,7 @@ clean:
 	-docker rm $(container)
 
 local: clean pre-build
+	mkdir -p build/libs
 	docker build --build-arg JAVA_MEM=$(java_memory) --build-arg JAR_FILE=build/libs/$(jar_name) --tag $(image):latest .
 
 qa:
