@@ -3,7 +3,7 @@ image := $(service-name)-img
 container := $(service-name)-con
 port_in := 8080
 port_out := 62000
-jar_name := pokedex-0.0.1.jar
+jar_name := pokedex-0.0.1-SNAPSHOT.jar
 docker_memory := 1024MB
 java_memory := -Xmx1024m
 
@@ -27,18 +27,22 @@ clean:
 
 local: clean pre-build
 	mkdir -p build/libs
+	cp target/$(jar_name) build/libs/${jar_name}
 	docker build --build-arg JAVA_MEM=$(java_memory) --build-arg JAR_FILE=build/libs/$(jar_name) --tag $(image):latest .
 
 qa:
 	mkdir -p build/libs
+	cp target/$(jar_name) build/libs/${jar_name}
 	docker build --build-arg JAVA_MEM=$(java_memory) --build-arg JAR_FILE=build/libs/$(jar_name) --tag $(image):latest .
 
 prod:
 	mkdir -p build/libs
+	cp target/$(jar_name) build/libs/${jar_name}
 	docker build --build-arg JAVA_MEM=$(java_memory) --build-arg JAR_FILE=build/libs/$(jar_name) --tag $(image):latest .
 
 run:
 	mkdir -p build/libs
+	cp target/$(jar_name) build/libs/${jar_name}
 	docker run -m $(docker_memory) --name $(container) -d -p $(port_out):$(port_in) $(image):latest
 
 run-profiling:
