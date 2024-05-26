@@ -1,7 +1,7 @@
 service-name := pokedex-api-2
 image := $(service-name)-img
 container := $(service-name)-con
-port_in := 8080
+port_in := 8081
 port_out := 62000
 jar_name := pokedex-0.0.1-SNAPSHOT.jar
 docker_memory := 1024MB
