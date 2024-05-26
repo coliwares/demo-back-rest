@@ -10,7 +10,7 @@ java_memory := -Xmx1024m
 all: build run
 
 pre-build:
-	mvn build
+	mvn package
 
 test:
 	mvn test
