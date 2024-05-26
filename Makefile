@@ -1,4 +1,4 @@
-service-name := pokedex-api-1
+service-name := pokedex-api-2
 image := $(service-name)-img
 container := $(service-name)-con
 port_in := 8080
