@@ -30,12 +30,15 @@ local: clean pre-build
 	docker build --build-arg JAVA_MEM=$(java_memory) --build-arg JAR_FILE=build/libs/$(jar_name) --tag $(image):latest .
 
 qa:
+	mkdir -p build/libs
 	docker build --build-arg JAVA_MEM=$(java_memory) --build-arg JAR_FILE=build/libs/$(jar_name) --tag $(image):latest .
 
 prod:
+	mkdir -p build/libs
 	docker build --build-arg JAVA_MEM=$(java_memory) --build-arg JAR_FILE=build/libs/$(jar_name) --tag $(image):latest .
 
 run:
+	mkdir -p build/libs
 	docker run -m $(docker_memory) --name $(container) -d -p $(port_out):$(port_in) $(image):latest
 
 run-profiling:
