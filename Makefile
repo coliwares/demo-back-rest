@@ -10,10 +10,10 @@ java_memory := -Xmx1024m
 all: build run
 
 pre-build:
-	./mvn build
+	mvn build
 
 test:
-	./mvn test
+	mvn test
 
 clean-images-not-used:
 	-docker images -a --no-trunc | grep 'none' | awk '{print $3}' | xargs docker rmi
