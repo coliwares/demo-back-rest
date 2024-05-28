@@ -1,10 +1,13 @@
 package com.demo.pokedex.service;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.demo.pokedex.model.Pokemon;
+import com.demo.pokedex.model.PokemonAbility;
 
 public class PokemonServiceImpl implements PokemonService {
 
@@ -22,16 +25,38 @@ public class PokemonServiceImpl implements PokemonService {
 
         // Check if the request was successful
         if (response.getStatusCode() == HttpStatus.OK) {
-            // Get the Pokemon details from the response body
-            Pokemon pokemonApiResponse = response.getBody();
 
-            // Create a new Pokemon object and set its values from the API response
+            System.out.println(response.getBody());
+
+            // Get the Pokemon details from the response body
             Pokemon pokemon = new Pokemon();
-            pokemon.setId(pokemonApiResponse.getId());
-            pokemon.setName(pokemonApiResponse.getName());
-            pokemon.setBaseExperience(pokemonApiResponse.getBaseExperience());
-            pokemon.setSprites(pokemonApiResponse.getSprites());
-            // Set other properties as needed
+
+            pokemon.setId(response.getBody().getId());
+            pokemon.setName(response.getBody().getName());
+            pokemon.setAbilities(response.getBody().getAbilities());
+            pokemon.setBaseExperience(response.getBody().getBaseExperience());
+            pokemon.setCries(response.getBody().getCries());
+            pokemon.setForms(response.getBody().getForms());
+            pokemon.setGameIndices(response.getBody().getGameIndices());
+            pokemon.setHeight(response.getBody().getHeight());
+            pokemon.setHeldItems(response.getBody().getHeldItems());
+            pokemon.setIsDefault(response.getBody().getIsDefault());
+            pokemon.setLocationAreaEncounters(response.getBody().getLocationAreaEncounters());
+            pokemon.setMoves(response.getBody().getMoves());
+            pokemon.setOrder(response.getBody().getOrder());
+            pokemon.setPastAbilities(response.getBody().getPastAbilities());
+            pokemon.setPastTypes(response.getBody().getPastTypes());
+            pokemon.setSpecies(response.getBody().getSpecies());
+            pokemon.setSprites(response.getBody().getSprites());
+            pokemon.setStats(response.getBody().getStats());
+            pokemon.setTypes(response.getBody().getTypes());
+
+
+
+
+
+
+            
 
             return pokemon;
         } else {

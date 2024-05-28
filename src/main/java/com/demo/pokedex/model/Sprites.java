@@ -3,9 +3,8 @@ package com.demo.pokedex.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
-
 @Data
-public class PokemonSprites {
+public class Sprites {
     @JsonProperty("back_default")
     private String back_default;
     @JsonProperty("back_female")
@@ -22,5 +21,4 @@ public class PokemonSprites {
     private String front_shiny;
     @JsonProperty("front_shiny_female")
     private String front_shiny_female;
-    private Other other;
 }

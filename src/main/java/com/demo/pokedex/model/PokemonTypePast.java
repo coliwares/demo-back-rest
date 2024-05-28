@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class PokemonTypePast {
     private int slot;
-    private NamedAPIResource type;
+    //private NamedAPIResource type;
 }

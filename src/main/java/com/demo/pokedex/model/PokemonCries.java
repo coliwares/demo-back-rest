@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class PokemonCries {
-    private String cry;
-    private String url;
+    private String latest;
+    private String legacy;
 
     
 
