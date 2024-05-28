@@ -50,3 +50,6 @@ run-profiling:
 
 runlocal: clean local run
 
+sonar:
+	mvn sonar:sonar -Dsonar.projectKey=pokedex-api-2 -Dsonar.host.url=http://3.208.218.55:9001 -Dsonar.login=1c4b3b3b1
+

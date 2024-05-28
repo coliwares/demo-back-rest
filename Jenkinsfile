@@ -21,6 +21,13 @@ pipeline {
                         sh 'make test'
                     }
         }
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'make sonar'
+                }
+            }
+        }
         stage('Build Image') {
             steps {
                 sh 'make local'
