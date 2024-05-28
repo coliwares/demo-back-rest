@@ -4,32 +4,41 @@ pipeline {
         maven 'M2'
     }
     stages {
-        stage('Checkout'){
-            steps{
+        stage('Checkout') {
+            steps {
                 checkout scm
             }
         }
-        stage('Clean images not used'){
-            steps{
+        stage('Clean images not used') {
+            steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh "make clean"
+                    sh 'make clean'
                 }
             }
         }
         stage('Running Test') {
                     steps {
-                        sh "make test"
+                        sh 'make test'
                     }
-                }
+        }
         stage('Build Image') {
             steps {
-                sh "make local"
+                sh 'make local'
             }
         }
-        stage('Run Container'){
+        stage('Run Container') {
             steps {
-                sh "make run"
+                sh 'make run'
             }
+        }
+    }
+    post {
+        success {
+            jacoco(
+            execPattern: '**/build/jacoco/*.exec',
+            classPattern: '**/build/classes/java/main',
+            sourcePattern: '**/src/main'
+            )
         }
     }
 }
