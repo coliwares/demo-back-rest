@@ -11,7 +11,6 @@ public class PokedexRestControllerTest {
 
     @BeforeEach
     public void setup() {
-        pokemonService = mock(PokemonService.class);
         
     }
 
