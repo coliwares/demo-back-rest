@@ -35,8 +35,8 @@ pipeline {
     post {
         success {
             jacoco(
-            execPattern: '**/build/jacoco/*.exec',
-            classPattern: '**/build/classes/java/main',
+            execPattern: '**/target/*.exec',
+            classPattern: '**/target/classes/java/main',
             sourcePattern: '**/src/main'
             )
         }
