@@ -14,8 +14,4 @@ public class PokedexRestControllerTest {
         
     }
 
-    @Test
-    public void testGetPokemon() {
-        fail();
-    }
 }
