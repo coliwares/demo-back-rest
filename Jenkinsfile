@@ -17,9 +17,14 @@ pipeline {
             }
         }
         stage('Running Test') {
-                    steps {
-                        sh 'make test'
-                    }
+            steps {
+                sh 'make test'
+            }
+            post {
+                failure {
+                    slackSend channel: 'despliegues', color: 'danger', iconEmoji: ':cara_con_símbolos_en_la_boca:', message: "La ejecucion ${env.JOB_NAME} ha fallado por test # ${env.BUILD_NUMBER} ${env.BUILD_URL}", tokenCredentialId: 'slack'
+                }
+            }
         }
         stage('SonarQube analysis') {
             steps {
@@ -49,12 +54,11 @@ pipeline {
         }
         failure {
             echo 'Failed'
-            slackSend channel: 'despliegues', color: 'danger', iconEmoji: 'pokeball', message: "La ejecucion ${env.JOB_NAME} ha fallado, # ${env.BUILD_NUMBER} ${env.BUILD_URL}", tokenCredentialId: 'slack'
+            slackSend channel: 'despliegues', color: 'danger', iconEmoji: ':ira:', message: "La ejecucion ${env.JOB_NAME} ha fallado, # ${env.BUILD_NUMBER} ${env.BUILD_URL}", tokenCredentialId: 'slack'
         }
         fixed {
             echo 'Fixed'
-            slackSend channel: 'despliegues', color: 'good', iconEmoji: 'pokeball', message: "La ejecucion ${env.JOB_NAME} ha sido corregida, # ${env.BUILD_NUMBER} ${env.BUILD_URL}", tokenCredentialId: 'slack'
+            slackSend channel: 'despliegues', color: 'good', iconEmoji: ':cara_aguantando_lágrimas:', message: "La ejecucion ${env.JOB_NAME} ha sido corregida, # ${env.BUILD_NUMBER} ${env.BUILD_URL}", tokenCredentialId: 'slack'
         }
-
     }
 }
