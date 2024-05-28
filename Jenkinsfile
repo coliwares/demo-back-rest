@@ -47,5 +47,14 @@ pipeline {
             sourcePattern: '**/src/main'
             )
         }
+        failure {
+            echo 'Failed'
+            slackSend channel: 'despliegues', color: 'danger', iconEmoji: 'pokeball', message: "La ejecucion ${env.JOB_NAME} ha fallado, # ${env.BUILD_NUMBER} ${env.BUILD_URL}", tokenCredentialId: 'slack'
+        }
+        fixed {
+            echo 'Fixed'
+            slackSend channel: 'despliegues', color: 'good', iconEmoji: 'pokeball', message: "La ejecucion ${env.JOB_NAME} ha sido corregida, # ${env.BUILD_NUMBER} ${env.BUILD_URL}", tokenCredentialId: 'slack'
+        }
+
     }
 }
